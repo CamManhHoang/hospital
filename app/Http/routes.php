@@ -10,13 +10,30 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['middleware' => ['web']] , function() {
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
+Route::get('/login', function() {
+	return view('/auth/login');
+});
+Route::group(['middleware' => 'auth'] , function() {
 
 	Route::get('/', [
     	'uses' => 'AdminController@index',
     	'as' => 'admin.index'
 	]);
+	Route::post('/', function() {
+		if(User::check_login(Input::get("user_input"),md5(sha1(Input::get("password"))))){
 
+		$_SESSION["session_user"]=Input::get("user_input");
+		$_SESSION["session_password"]=Input::get("password");
+		return View::make("admin.index");
+	}
+	else{
+		return "Login fail";
+	}
+	});
 	//employee
 
 	Route::get('/employee' , [

@@ -26,16 +26,39 @@
   <link rel="stylesheet" href="{{ asset('styles/urban.css') }}">
   <link rel="stylesheet" href="{{ asset('styles/urban.skins.css') }}">
   <!-- endbuild -->
-    @yield('run_custom_css_file')
-    @yield('run_custom_css')
 </head>
 	<body>	
-        @include('includes.left_sidebar')
-        @yield('top_header')
-		@yield('content')
-		@include('includes.footer')
-
-        <!-- build:js({.tmp,app}) scripts/app.min.js -->
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<form method="post" action="{{url('/auth/login')}}" id="form-login">
+	{!! csrf_field() !!}
+	@if(count($errors)>0)
+	<div>
+	Lỗi rồi:
+	<ul>
+		@foreach($errors->all() as $error)
+		<li> {{$error}}</li>
+		@endforeach
+	</ul>
+	</div>
+	@endif
+	@if(Session::has("register_success"))
+		<div class="alert alert-success">
+			<center>{{Session::get("register_success")}}</center>
+		</div>
+	@endif
+	<h2>ĐĂNG NHẬP </h2>
+	<input type="email" name="email" id="email" placeholder="Email" class="form-control"/>
+	<input type="password" name="password" id="password" placeholder="Mật khẩu" class="form-control"/>
+	<input type="hidden" name="_token" value="{{ csrf_token() }}"> 
+	<input type="checkbox" name="remember"> Ghi nhớ
+	<button type ="submit" class="btn btn-lg btn-warning btn-block"> Đăng nhập </button>
+	<a class="btn btn-link" href="{{ url('/password/reset') }}">Quên mật khẩu?</a>
+</form>
+</div>
+<div class="col-md-2"></div>
+@include('includes.footer')
+ <!-- build:js({.tmp,app}) scripts/app.min.js -->
         <script src="{{ asset('scripts/extentions/modernizr.js') }}"></script>
         <script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
@@ -67,7 +90,5 @@
         <script src="{{ asset('scripts/pages/dashboard.js') }}"></script>
         <!-- /initialize page scripts -->
         <!-- /content panel -->
-        @yield('run_custom_js_file')
-        @yield('run_custom_jquery')
 	</body>
 </html>

@@ -48,7 +48,7 @@
             <a href="{{ route('admin.index') }}">Dashboard</a>
           </li>
           <li>
-            <a href="signin.html">Logout</a>
+            <a href="{{Asset('auth/logout')}}">Logout</a>
           </li>
         </ul>
 
