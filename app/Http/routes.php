@@ -23,16 +23,7 @@ Route::group(['middleware' => 'auth'] , function() {
     	'uses' => 'AdminController@index',
     	'as' => 'admin.index'
 	]);
-	/*Route::post('/', function() {
-		if(User::check_login(Input::get("email"),bcrypt(Input::get("password")))){
-		$_SESSION["session_user"]=Input::get("email");
-		$_SESSION["session_password"]=Input::get("password");
-		return View::make("admin.index");
-	}
-	else{
-		return "Login fail";
-	}
-	});*/
+	
 	//employee
 
 	Route::get('/employee' , [

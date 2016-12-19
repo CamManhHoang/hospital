@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Auth;
-session_start();
+//session_start();
 class AdminController extends Controller {
 	public function index()
 	{	
