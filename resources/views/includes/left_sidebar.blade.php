@@ -268,11 +268,11 @@
                   </li>
                 </ul>
               </li>
-              {{-- <li>
-                <a href="http://localhost/hospital-management-system/public/openemr-services">
-                  <span>OpenEMR</span>
+              <li>
+                <a href="http://localhost/hospital-management-system/public/chikitsa">
+                  <span>Chikitsa</span>
                 </a>
-              </li>  --}}           
+              </li>            
             </ul>
           </li>
           <!-- menu levels -->

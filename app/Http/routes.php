@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -238,11 +238,7 @@ Route::group(['middleware' => 'auth'] , function() {
         'as' => 'apipatient.create'
     ]);
 
-    Route::get('/openemr-services' , [
-		'uses' => 'OpenemrController@index',
-		'as' => 'openemr.index'
-	]);
-
+   
 	Route::get('/elixiraid/hospital-registration' , [
 		'uses' => 'ElixirController@hospitalIndex',
 		'as' => 'elixir.hospital'
@@ -266,6 +262,12 @@ Route::group(['middleware' => 'auth'] , function() {
 	Route::get('/elixiraid/hospital-floor' , [
 		'uses' => 'ElixirController@floorIndex',
 		'as' => 'elixir.floor'
+	]);
+
+	//Chikitsa
+	Route::get('/chikitsa' , [
+		'uses' => 'ChikitsaController@index',
+		'as' => 'chikitsa.index'
 	]);
 });
 
