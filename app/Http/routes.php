@@ -17,6 +17,12 @@ Route::controllers([
 Route::get('/login', function() {
 	return view('/auth/login');
 });
+Route::get('/logout', function() {
+	Auth::logout();
+	Session::flush();
+	session_destroy();
+	return redirect('login');
+});
 Route::group(['middleware' => 'auth'] , function() {
 
 	Route::get('/', [
